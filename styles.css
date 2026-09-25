@@ -16,7 +16,7 @@
   --color-text:    #fffefd;   /* main text color        */
   --color-accent:  #f8e300;   /* links & buttons        */
   --color-muted:   #807d6b;   /* softer/secondary text  */
-  --color-card:    #f3f4f6;   /* project card background */
+  --color-card:    #fdd300;   /* project card background */
 
   --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
   --max-width: 900px;         /* how wide the content gets */
@@ -51,7 +51,7 @@ a:hover {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid #f9b700;
   position: sticky;      /* stays at top when you scroll */
   top: 0;
   background-color: var(--color-bg);
@@ -89,7 +89,7 @@ a:hover {
 .button {
   display: inline-block;
   background-color: var(--color-accent);
-  color: #000000;
+  color: #2b2929;
   padding: 0.75rem 1.5rem;
   border-radius: 6px;
   font-weight: 600;
