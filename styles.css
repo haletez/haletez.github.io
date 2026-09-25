@@ -13,7 +13,7 @@
 /* -------- COLOR & FONT SETTINGS (edit these first!) -------- */
 :root {
   --color-bg:      #fde801;   /* page background        */
-  --color-text:    #000000;   /* main text color        */
+  --color-text:    #fffefd;   /* main text color        */
   --color-accent:  #2563eb;   /* links & buttons        */
   --color-muted:   #807d6b;   /* softer/secondary text  */
   --color-card:    #f3f4f6;   /* project card background */
