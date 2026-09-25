@@ -13,8 +13,8 @@
 /* -------- COLOR & FONT SETTINGS (edit these first!) -------- */
 :root {
   --color-bg:      #1e1e1c;   /* page background        */
-  --color-text:    #b3aba2;   /* main text color        */
-  --color-accent:  #1c8d0f;   /* links & buttons        */
+  --color-text:    #ffffff;   /* main text color        */
+  --color-accent:  #e2ece1;   /* links & buttons        */
   --color-muted:   #171714;   /* softer/secondary text  */
   --color-card:    #0e9328;   /* project card background */
 
