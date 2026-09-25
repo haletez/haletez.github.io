@@ -15,7 +15,7 @@
   --color-bg:      #1e1e1c;   /* page background        */
   --color-text:    #f0ece7;   /* main text color        */
   --color-accent:  #f8e300;   /* links & buttons        */
-  --color-muted:   #efeedd;   /* softer/secondary text  */
+  --color-muted:   #171714;   /* softer/secondary text  */
   --color-card:    #fdd300;   /* project card background */
 
   --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -170,7 +170,7 @@ a:hover {
   text-align: center;
   padding: 2rem;
   color: var(--color-muted);
-  border-top: 1px solid #000000;
+  border-top: 1px solid #f8db04;
   margin-top: 2rem;
 }
 
