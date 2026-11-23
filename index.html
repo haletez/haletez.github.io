@@ -1,128 +1,190 @@
-<!DOCTYPE html>
-<!--
-  ============================================================
-  PORTFOLIO STARTER TEMPLATE
-  ============================================================
-  How to use this file:
-  1. Replace anything in [SQUARE BRACKETS] with your own info.
-  2. Save the file.
-  3. Refresh your browser to see changes.
-
-  Tip: Search for "REPLACE" to find every spot you need to edit.
-  ============================================================
--->
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- REPLACE: This shows in the browser tab -->
-  <title>Cortez Hale — Portfolio</title>
-
-  <!-- This links your styles.css file to this page -->
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#12131a">
+  <meta name="description" content="Cortez Hale's portfolio of web development, interface design, and game development in Godot.">
+  <title>Cortez Hale | Creative Developer</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #12131a;
+      --card: #1c1e28;
+      --ink: #f6f5ee;
+      --muted: #bdc0ce;
+      --line: #383b49;
+      --lime: #d9ff72;
+      --blue: #a5c9ff;
+      --peach: #ffc6aa;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.6; }
+    h1, h2, h3, p, figure { margin: 0; }
+    a { color: inherit; }
+    a:focus-visible, summary:focus-visible { outline: 3px solid var(--lime); outline-offset: 5px; }
+    [id] { scroll-margin-top: 1.5rem; }
+    .wrap { width: min(71rem, calc(100% - 3rem)); margin-inline: auto; }
+    .skip-link { position: fixed; z-index: 2; top: 1rem; left: 1rem; padding: .65rem 1rem; background: var(--lime); color: var(--bg); transform: translateY(-200%); }
+    .skip-link:focus { transform: translateY(0); }
+    .site-header { border-bottom: 1px solid var(--line); }
+    .nav { min-height: 4.65rem; display: flex; align-items: center; justify-content: space-between; gap: .5rem 1rem; flex-wrap: wrap; }
+    .brand { display: inline-flex; align-items: center; gap: .65rem; text-decoration: none; font-weight: 750; }
+    .monogram { display: grid; place-items: center; width: 2.25rem; aspect-ratio: 1; border-radius: .45rem; background: var(--lime); color: var(--bg); font: 750 .8rem ui-monospace, monospace; }
+    .nav-links, .actions { display: flex; align-items: center; gap: .75rem 1.35rem; flex-wrap: wrap; }
+    .nav-links a, .footer a { color: var(--muted); text-decoration: none; }
+    .nav-links a:hover, .footer a:hover { color: var(--lime); }
+    .hero { display: grid; grid-template-columns: 1.45fr 1fr; gap: clamp(2rem, 7vw, 6rem); align-items: center; padding-block: clamp(3.4rem, 7vw, 6.2rem); }
+    .label { color: var(--lime); font: 600 .875rem/1.5 ui-monospace, monospace; letter-spacing: .07em; text-transform: uppercase; }
+    h1, h2, h3 { letter-spacing: -.045em; line-height: 1.05; }
+    h1 { margin: .85rem 0 1.2rem; font-size: clamp(3.3rem, 7.2vw, 6.6rem); font-weight: 800; }
+    h1 span { color: var(--lime); }
+    .hero-copy { max-width: 33rem; color: var(--muted); font-size: clamp(1rem, 2vw, 1.2rem); }
+    .actions { margin-top: 1.55rem; }
+    .button { display: inline-flex; align-items: center; min-height: 2.8rem; padding: .6rem 1.1rem; border: 1px solid transparent; border-radius: .45rem; text-decoration: none; font-weight: 700; }
+    .button-primary { background: var(--lime); color: var(--bg); }
+    .button-primary:hover { background: #edffb2; }
+    .button-secondary { border-color: #535767; }
+    .button-secondary:hover { border-color: var(--lime); color: var(--lime); }
+    .portrait { width: min(100%, 24rem); justify-self: end; padding: .6rem; border: 1px solid var(--line); border-radius: .9rem; background: var(--card); }
+    .portrait img { display: block; width: 100%; aspect-ratio: 1.13; object-fit: cover; object-position: center 40%; border-radius: .45rem; background: #323541; }
+    .portrait figcaption { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .25rem .8rem; padding: .65rem .25rem .15rem; color: var(--muted); font-size: .9rem; }
+    .portrait strong { color: var(--ink); }
+    .section { padding-block: clamp(2.9rem, 5vw, 4.75rem); border-top: 1px solid var(--line); }
+    h2 { font-size: clamp(2.35rem, 5vw, 4rem); }
+    .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.35rem; margin-top: 1.65rem; }
+    .project { min-width: 0; border: 1px solid var(--line); background: var(--card); border-radius: .9rem; overflow: hidden; }
+    .project:target { outline: 2px solid var(--lime); outline-offset: 4px; }
+    .art { position: relative; display: grid; place-items: center; height: clamp(11rem, 20vw, 15.5rem); overflow: hidden; }
+    .art-dashboard { background: radial-gradient(ellipse at 62% 35%, #305790, transparent 75%), #19263e; }
+    .dashboard { width: min(69%, 20rem); height: 70%; padding: .9rem; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: .5rem 1.6rem 1fr; gap: .55rem; border: 1px solid #90b8fd80; border-radius: .65rem; background: #121e36; transform: rotate(-5deg); box-shadow: 0 16px 32px #03091499; }
+    .dashboard::before { content: ''; grid-column: 1 / -1; width: 28%; border-radius: 1rem; background: #94baff; }
+    .dashboard > span { border-radius: .25rem; background: #30466d; }
+    .bars { grid-column: 1 / -1; display: flex; align-items: end; justify-content: space-around; gap: .35rem; padding: .2rem .55rem; background: repeating-linear-gradient(to top, #799ad329 0 1px, transparent 1px 25%); }
+    .bars i { width: 11%; min-height: 15%; border-radius: .16rem .16rem 0 0; background: #9cc4ff; }
+    .bars i:nth-child(1), .bars i:nth-child(3) { height: 38%; }
+    .bars i:nth-child(2), .bars i:nth-child(5) { height: 63%; background: #63dfce; }
+    .bars i:nth-child(4) { height: 79%; }
+    .bars i:nth-child(6) { height: 92%; }
+    .art-game { background: radial-gradient(ellipse at 49% 35%, #9b535c, transparent 68%), linear-gradient(#372842, #49304a 68%, #261f36 68%); }
+    .art-game::before, .art-game::after { content: ''; position: absolute; bottom: 22%; width: 27%; height: 29%; background: #2b2037; clip-path: polygon(0 45%, 16% 45%, 16% 6%, 43% 6%, 43% 31%, 67% 31%, 67% 0, 86% 0, 86% 47%, 100% 47%, 100% 100%, 0 100%); }
+    .art-game::before { left: 0; }
+    .art-game::after { right: 0; transform: scaleX(-1); }
+    .donut { z-index: 1; margin-bottom: 1rem; width: clamp(6rem, 11vw, 8rem); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 29% 33%, #fff0a5 0 3%, transparent 4%), radial-gradient(circle at 65% 24%, #a4efe4 0 3%, transparent 4%), radial-gradient(circle at 75% 55%, #fff0a5 0 3%, transparent 4%), radial-gradient(circle at 36% 72%, #a4efe4 0 3%, transparent 4%), radial-gradient(circle at 50% 50%, transparent 0 22%, #a04752 23% 27%, #ff929b 28% 54%, #f3b171 55% 69%, transparent 70%); transform: rotate(-13deg); }
+    .project-body { padding: clamp(1.15rem, 3vw, 1.7rem); }
+    .project-type { margin-bottom: .55rem; color: var(--blue); font-size: .875rem; font-weight: 700; }
+    .project--game .project-type { color: var(--peach); }
+    h3 { font-size: clamp(1.75rem, 3vw, 2.5rem); }
+    .project-body > p:not(.project-type), .detail-text, .about-copy, .contact-copy { margin-top: .85rem; color: var(--muted); }
+    .tags { display: flex; flex-wrap: wrap; gap: .45rem; list-style: none; margin: 1.1rem 0 0; padding: 0; }
+    .tags li { border: 1px solid #505465; border-radius: .35rem; padding: .2rem .55rem; font-size: .875rem; }
+    details { margin-top: 1.1rem; padding-top: .9rem; border-top: 1px solid var(--line); }
+    summary { width: fit-content; padding-block: .25rem; cursor: pointer; font-weight: 700; }
+    summary:hover { color: var(--lime); }
+    .about { display: grid; grid-template-columns: .7fr 1.3fr; gap: 1.25rem 2.5rem; }
+    .about-copy { margin-top: 0; max-width: 42rem; }
+    .about-copy p + p { margin-top: .8rem; }
+    .contact { padding: clamp(1.5rem, 4vw, 3rem); border: 1px solid #47543b; border-radius: .9rem; background: radial-gradient(ellipse at top right, #2d3a30, transparent 70%), var(--card); }
+    .footer { display: flex; justify-content: space-between; gap: .6rem 1rem; flex-wrap: wrap; padding-block: 0 1.5rem; color: var(--muted); font-size: .9rem; }
+    @media (max-width: 45rem) {
+      .hero, .project-grid, .about { grid-template-columns: 1fr; }
+      .portrait { justify-self: start; }
+      .hero { gap: 2rem; }
+    }
+    @media (max-width: 26rem) {
+      .wrap { width: calc(100% - 2rem); }
+      .nav { padding-block: .75rem; }
+      .nav-links { gap: .6rem .85rem; }
+      h1 { font-size: clamp(2.45rem, 12.5vw, 3.3rem); }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
 </head>
-
-<body>
-
-  <!-- ===================== NAVIGATION ===================== -->
-  <nav class="navbar">
-    <!-- REPLACE: your name or a logo/initials -->
-    <a href="#top" class="nav-logo"><div>Cortez Hale</div></a>
-
-    <!-- These links jump to sections further down the page -->
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
-
-  <!-- ===================== HERO / INTRO ===================== -->
-  <header id="top" class="hero">
-    <!-- REPLACE: your name -->
-    <h1>Whats up, I'm Tez</h1>
-    <img src="tez.jpeg" alt="Tez's picture" width="300">
-
-    
-
-    <!-- REPLACE: one sentence about who you are -->
-    <p class="tagline">[A curious, systems-minded builder who sees technology as a way to create.]</p>
-
-    <a href="#projects" class="button">See My Work</a>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#top"><span class="monogram" aria-hidden="true">CH</span>Cortez Hale</a>
+      <div class="nav-links">
+        <a href="#projects">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
   </header>
+  <main id="main" class="wrap" tabindex="-1">
+    <section class="hero" aria-labelledby="intro-heading">
+      <div>
+        <p class="label">Hey, I’m Tez</p>
+        <h1 id="intro-heading">I build tools.<br><span>I design worlds.</span></h1>
+        <p class="hero-copy">I’m a creative developer in Milwaukee. I build web apps that make information easier to use and games that make learning feel like play.</p>
+        <div class="actions">
+          <a class="button button-primary" href="#projects">Explore my work</a>
+          <a class="button button-secondary" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <figure class="portrait">
+        <img src="tez.jpeg" alt="Portrait of Cortez Hale" fetchpriority="high">
+        <figcaption><strong>Cortez “Tez” Hale</strong><span>Milwaukee, WI</span></figcaption>
+      </figure>
+    </section>
 
-  <!-- ===================== ABOUT ===================== -->
-  <section id="about" class="section">
-    <h2>About Me</h2>
-    <!-- REPLACE: 2-3 sentences about your background, goals, and what you're learning -->
-    <p>
-      [I'm a curious, systems -minded builder who's starting from the foundations of coding and technology but already thinks beyond the code-imagining how computers, simulated worlds,biology, and AI could connect to create living, evolving systems.]
-    </p>
+    <section class="section" id="projects" aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Selected work</h2>
+      <div class="project-grid">
+        <article class="project" id="tap-track" aria-labelledby="tap-track-title">
+          <div class="art art-dashboard" aria-hidden="true">
+            <div class="dashboard"><span></span><span></span><span></span><div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+          </div>
+          <div class="project-body">
+            <p class="project-type">Team software project</p>
+            <h3 id="tap-track-title">Tap Track</h3>
+            <p>A read-only reporting app that helps project teams follow IT tickets, see trends, and keep track of issues after launch.</p>
+            <ul class="tags" aria-label="Technologies"><li>React</li><li>Express</li><li>PostgreSQL</li></ul>
+            <details>
+              <summary>My contribution</summary>
+              <p class="detail-text">I helped build the customizable dashboard and worked on Hypercare, a dedicated area for tracking post-launch issues and checking when a project is ready to return to regular support.</p>
+            </details>
+          </div>
+        </article>
+        <article class="project project--game" id="somethings-phishy" aria-labelledby="phishy-title">
+          <div class="art art-game" aria-hidden="true"><div class="donut"></div></div>
+          <div class="project-body">
+            <p class="project-type">Personal game project · In development</p>
+            <h3 id="phishy-title">Somethings Phishy</h3>
+            <p>The police department’s donut and coffee fund has gone missing. In this 2D side-scroller, players collect evidence and learn how to spot phishing clues.</p>
+            <ul class="tags" aria-label="Technologies"><li>Godot</li><li>GDScript</li></ul>
+            <details>
+              <summary>How the game works</summary>
+              <p class="detail-text">I’m designing the investigation around an evidence board that helps players connect clues. The final police report doubles as a quiz, so solving the case means putting what they learned into practice.</p>
+            </details>
+          </div>
+        </article>
+      </div>
+    </section>
 
-    <h3>Skills</h3>
-    <!-- REPLACE: add or remove skills as a simple list -->
-    <ul class="skills-list">
-      <li>HTML</li>
-      <li>CSS</li>
-      <li>[JavaScript]</li>
-      <li>[Git &amp; GitHub]</li>
-      <li>godot</li>
-    </ul>
-  </section>
+    <section class="section about" id="about" aria-labelledby="about-heading">
+      <h2 id="about-heading">About me</h2>
+      <div class="about-copy">
+        <p>I like figuring out how systems work and making them easier for people to use. Through i.c.stars, I’ve worked on a team web app and learned how to turn feedback into changes people can try.</p>
+        <p>Outside of team projects, I’m drawn to game design, character concepts, and simulated worlds that change in response to the people and creatures living in them.</p>
+      </div>
+    </section>
 
-  <!-- ===================== PROJECTS ===================== -->
-  <section id="projects" class="section">
-    <h2>Projects</h2>
-
-    <div class="project-grid">
-
-      <!-- PROJECT CARD 1 — copy this whole block to add more projects -->
-      <article class="project-card">
-        <!-- REPLACE: project name -->
-        <h3>[Tap Track]</h3>
-        <!-- REPLACE: 1-2 sentences on what it is and what you built -->
-        <p>[ Tap Track is a simple Ticket Manager System I helped Create with Ibis Tek Solutions for Molson Coors Which gave me the opportunity to grow in web and software development as well as in leadership and teamwork skill's]</p>
-        <!-- REPLACE: link to the live site or GitHub repo -->
-        <a href="[https://github.com/yourusername/project]" class="project-link">View Project</a>
-      </article>
-
-      <!-- PROJECT CARD 2 -->
-      <article class="project-card" id="somethings-phishy">
-        <h3>Somethings Phishy</h3>
-        <p>I'm building a 2D side-scrolling game that teaches players to spot phishing clues. When the police department's donut and coffee fund goes missing, players collect evidence, piece it together on an evidence board, and test what they learned by filing a police report.</p>
-        <p><strong>Tools:</strong> Godot, GDScript<br />
-        <strong>Status:</strong> In development</p>
-      </article>
-
-      <!-- PROJECT CARD 3 -->
-      <article class="project-card">
-        <h3>[Project Name]</h3>
-        <p>[Short description of the project.]</p>
-        <a href="[https://github.com/yourusername/project]" class="project-link">View Project</a>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- ===================== CONTACT ===================== -->
-  <section id="contact" class="section">
-    <h2>Get In Touch</h2>
-    <p>[Want to work together or just say hi? Reach out.]</p>
-
-    <ul class="contact-list">
-      <!-- REPLACE: your real links. Delete any you don't use. -->
-      <li><a href="mailto:[chale@icstars.org]">Email</a></li>
-      <li><a href="[https://github.com/haletez]">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/cortez-hale-7aa502301/">LinkedIn</a></li>
-    </ul>
-  </section>
-
-  <!-- ===================== FOOTER ===================== -->
-  <footer class="footer">
-    <!-- REPLACE: your name -->
-    <p>&copy; 2026 Cortez Hale. Built with HTML, CSS, and GitHub Pages.</p>
-  </footer>
-
+    <section class="section" id="contact" aria-labelledby="contact-heading">
+      <div class="contact">
+        <h2 id="contact-heading">Let’s connect.</h2>
+        <p class="contact-copy">I’m interested in web development, UX, and game development. Feel free to reach out about my work or a project you’re building.</p>
+        <div class="actions">
+          <a class="button button-primary" href="mailto:chale@icstars.org">Email me</a>
+          <a class="button button-secondary" href="https://www.linkedin.com/in/cortez-hale-7aa502301/">LinkedIn</a>
+          <a class="button button-secondary" href="https://github.com/haletez">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer wrap"><span>© 2026 Cortez Hale</span><a href="#top">Back to top</a></footer>
 </body>
 </html>
