@@ -10,7 +10,10 @@ how i work:
 
 
 featured work:
-1-
+
+- **[Somethings Phishy](https://haletez.github.io/#somethings-phishy)** · Godot / GDScript · In development<br>
+  A 2D side-scrolling game about spotting phishing clues. Players investigate the missing police department donut and coffee fund, collect evidence, and file a police report to test what they learned.
+
 2-
 3-
 4-
